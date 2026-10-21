@@ -1,0 +1,20 @@
+{
+  "name": "kingdeex-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Scoped experimental MCP for Kingdee Cloud Galaxy department metadata fields",
+  "scripts": {
+    "start": "node src/kingdeeX.js",
+    "provision": "node src/provision-kingdeeX.js",
+    "provision:customer": "node src/provision-kingdeeX-customer-field.js",
+    "provision:typed": "node src/provision-kingdeeX-typed-fields.js",
+    "repair:element-ids": "node src/upgrade-kingdeeX-element-ids.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "dotenv": "^16.4.7",
+    "mssql": "^11.0.1",
+    "zod": "^3.25.76"
+  }
+}
