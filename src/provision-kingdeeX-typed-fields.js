@@ -36,6 +36,7 @@ CREATE OR ALTER PROCEDURE dbo.MCP_KINGDEEX_AddDeptTypedField
   @FieldType varchar(32),
   @ExpectedVersion varchar(100),
   @NewVersion varchar(100),
+  @ScopeFormId varchar(36),
   @FieldPrecision int=23,
   @FieldScale int=10,
   @LookupObjectId varchar(36)=NULL,
@@ -49,6 +50,7 @@ AS
 BEGIN
   SET NOCOUNT ON;
   SET XACT_ABORT ON;
+  IF @ScopeFormId IS NULL OR @ScopeFormId<>'${departmentFormId}' THROW 51901, 'Runtime scope does not match the provisioned extension form.', 1;
   IF LOWER(DB_NAME())<>N'${allowedDatabase}' THROW 51900, 'Procedure is restricted to its provisioned test database.', 1;
 
   IF @FieldKey NOT LIKE N'F_KINGDIEX[_]%'
