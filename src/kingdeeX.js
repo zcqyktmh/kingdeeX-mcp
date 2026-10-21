@@ -340,6 +340,7 @@ server.registerTool('kingdeeX', {
     .input('FieldKey', sql.NVarChar(128), fieldKey)
     .input('DisplayName', sql.NVarChar(128), displayName)
     .input('ExpectedVersion', sql.VarChar(100), String(source.form_version))
+    .input('ScopeFormId', sql.VarChar(36), targetFormId)
     .input('NewVersion', sql.VarChar(100), version);
   if (isTyped) {
     request
