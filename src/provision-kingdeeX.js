@@ -48,12 +48,14 @@ CREATE PROCEDURE dbo.MCP_KINGDEEX_AddDeptTextField
   @FieldKey nvarchar(128),
   @DisplayName nvarchar(128),
   @ExpectedVersion varchar(100),
-  @NewVersion varchar(100)
+  @NewVersion varchar(100),
+  @ScopeFormId varchar(36)
 WITH EXECUTE AS OWNER
 AS
 BEGIN
   SET NOCOUNT ON;
   SET XACT_ABORT ON;
+  IF @ScopeFormId IS NULL OR @ScopeFormId<>'${departmentFormId}' THROW 51901, 'Runtime scope does not match the provisioned extension form.', 1;
   IF LOWER(DB_NAME())<>N'${allowedDatabase}' THROW 51900, 'Procedure is restricted to its provisioned test database.', 1;
 
   IF @FieldKey NOT LIKE N'F_KINGDIEX[_]%'
